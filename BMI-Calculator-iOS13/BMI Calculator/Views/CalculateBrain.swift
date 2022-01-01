@@ -12,7 +12,9 @@ struct CalculateBrain {
     var bmi : BMI?
     
     mutating func calculateBMI(h : Float , w : Float) -> Void {
-        if h != 0 {
+        if h == 0 || w == 0 {
+            bmi = BMI(value: -1 , advice: "Error , Try again !!", color: UIColor.gray)
+        } else {
             let bmiValue = w / (h * h)
             let color : UIColor
             if bmiValue < 18.5 {
@@ -25,8 +27,6 @@ struct CalculateBrain {
                 color = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
                 bmi = BMI(value: bmiValue, advice: "Eat less pies", color: color)
             }
-        } else {
-            bmi = BMI(value: -1 , advice: "Error , Try again !!", color: UIColor.gray)
         }
     }
     
